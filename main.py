@@ -12,21 +12,21 @@ df.drop(columns=columns_to_drop, inplace=True)
 # Fill missing values in categorical columns with mode
 garage_columns = ['Garage Cond', 'Garage Qual', 'Garage Finish', 'Garage Yr Blt', 'Garage Type']
 for col in garage_columns:
-    df[col].fillna(df[col].mode()[0], inplace=True)
+    df[col] = df[col].fillna(value=df[col].mode()[0])
 
 basement_columns = ['Bsmt Exposure', 'BsmtFin Type 2', 'BsmtFin Type 1', 'Bsmt Qual', 'Bsmt Cond']
 for col in basement_columns:
-    df[col].fillna(df[col].mode()[0], inplace=True)
+    df[col] = df[col].fillna(value=df[col].mode()[0])
 
 # Fill missing values in numerical columns with median
-df['Lot Frontage'].fillna(df['Lot Frontage'].median(), inplace=True)
-df['Mas Vnr Area'].fillna(df['Mas Vnr Area'].median(), inplace=True)
+df['Lot Frontage'] = df['Lot Frontage'].fillna(value=df['Lot Frontage'].median())
+df['Mas Vnr Area'] = df['Mas Vnr Area'].fillna(value=df['Mas Vnr Area'].median())
 numerical_columns = ['Total Bsmt SF', 'Garage Cars', 'Garage Area', 'BsmtFin SF 1', 'BsmtFin SF 2', 'Bsmt Unf SF']
 for col in numerical_columns:
-    df[col].fillna(df[col].median(), inplace=True)
+    df[col] = df[col].fillna(value=df[col].median())
 
 # Fill missing values in 'Electrical' with mode
-df['Electrical'].fillna(df['Electrical'].mode()[0], inplace=True)
+df['Electrical'] = df['Electrical'].fillna(value=df['Electrical'].mode()[0])
 
 # 3. Feature Engineering
 df = pd.get_dummies(df, drop_first=True)
